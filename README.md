@@ -43,29 +43,29 @@ For iteration of model performance and to find the evaluation matrics for baseli
 The testing data set is also preprocessed. 
 The performance of the baseline model is low, with precision of only 50% on both training and testing data set. This means only 50% of the customers who will churn will be correctly predicted.
 The accuracy of the model is better, but it is misleading because the dataset is imbalanced.
-![img](./images/Conf_matrix_LR.png) 
+![img](images/Conf_matrix_LR.png) 
 The recall-score is also very low which indicates that lower percentage actual positives were correctly identified.
 Thus, I checked if the precision of the model improves by addressing the imbalance in the dataset.
 
 *** 
 SMOTE (Synthetic Minority Over-sampling Technique) method is used to handle imbalanced datasets by generating synthetic samples for the minority class, in this case class 1 or 'True'. Precision of updated model on train data set has improved but its precision on test set of data, which reflects real-world performance on imbalanced data, is low(0.27) compared to the baseline model. This is because of overfitting of the model. Thus, we have to find a new model which with better precision.
 DecisionTreeClassifier will be the the new model to train.
-![img](./images/conf_matrix_LR_SMOTE.png) 
+![img](images/conf_matrix_LR_SMOTE.png) 
 ***
 DecisionTree model is trained with the same preprocessed data and used to predict on the train and test sets. 
 
 Compared to Logestic regression, the performance of the DecisionTree model shows improvement. Precision of the model on the train data set is 100% but it is 64% on the test data set. This is a significant change. There is overfitting of the model. Next, the performance of Decision Tree model will be optimized by selecting the best values for parameters like max_depth, min_samples_split, and criterion. 
-![img](./images/conf_matrix_dtree.png)
+![img](images/conf_matrix_dtree.png)
 Hyperparameter Tuning was done for DecisionTree Model and using the bast parameters the model was trained. Precision of the optimized Decision Tree model, on test set, has increased to 84%. Its precision on predicting the "False" or (0) class correctly is very high 96%. This helps to avoid misclassifying customers who are not going to churn. But still, about 85% precision is not enough. It has to be improved. A better model Random Forest will be trained. 
-![img](./images/conf_matrix_dt_best.png)
+![img](images/conf_matrix_dt_best.png)
 ***
 A RandomForest model was trained with the preprocessd data and used to predict on the train and test sets. Precision of the model on test dataset is now 89.12% but lower than that of train dataset. This shows better performance from previous models. The accuracy of the data is now very high, 96%. Still there is overfitting of the model. For optimaized performance we will find best parameters for the random forest model and run it again.
-![img](./images/conf_matrix_rf.png) 
+![img](images/conf_matrix_rf.png) 
 Hyperparameter Tuning was done for Random Forest Model and using the bast parameters the model was trained. This model has high precision of 90% which show improvment from the previous models. Its accuracy is also high. Its precision on predicting the "False" or (0) class correctly is very high 97%. 
-![img](./images/best_conf_matrix_rf.png)
+![img](images/best_conf_matrix_rf.png)
 *** 
 It is very important to find out which features are curucial to indicate which customers are to churn and which ones are to stay. Thus importance scores shows that Total day minutes 'Total day charge', 'Customer service calls', 'International plan', and 'Total eve charge' are among the top featues which are strong predictors. 
-![img](./images/feature_import.png)
+![img](images/feature_import.png)
  ## Conclusion 
  * Precision is the best evaluation metrics for model performance to maximize the correct prediction of coustomers who will churn
 * RandomForestClassifier is the best performing model with the highest precision
